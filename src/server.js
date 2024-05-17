@@ -2,13 +2,24 @@ const express = require('express')
 const mongoose = require('mongoose');
 const Product = require('./models/products.model');
 const productsRoute = require('./routes/products.route');
+const usersRoute = require('./routes/users.route');
+const categoriesRoute = require('./routes/categories.route');
+const path = require('path');
 const app = express()
+
+
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+// Cấu hình để phục vụ các file tĩnh
+app.use('/assets/images', express.static(path.join(__dirname, 'assets/images')));
 
+app.use((req, res, next) => {
+    res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' data:;");
+    return next();
+});
 
 app.listen(8000, () =>{
     console.log('Server is running on port 8000');
@@ -16,6 +27,8 @@ app.listen(8000, () =>{
 
 // routes
 app.use('/api/products', productsRoute);
+app.use('/api/users', usersRoute);
+app.use('/api/categories', categoriesRoute);
 
 
 app.get('/', (req, res) =>{
