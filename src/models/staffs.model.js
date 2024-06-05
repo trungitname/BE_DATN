@@ -1,35 +1,35 @@
 const { timestamps } = require('mongodb');
 const mongoose = require('mongoose')
 
-const StorechainSchema = mongoose.Schema(
+const StaffSchema = mongoose.Schema(
     {
-        storeid: {
+        staffid: {
             type: String,
             required: [true, "not null"],
         },
-        storename: {
+        staffname: {
             type: String,
             required: true,
         },
-        adress: {
-            type: String,
-            required: true,
-        },
-        city: {
+        position: {
             type: String,
             required: false,
         },
-        country: {
+        storeid: {
+            type: String,
+            required: false,
+        },
+        email: {
             type: String,
             required: false,
         },
         phonenumber: {
             type: String,
-            required: true,
+            required: false,
         },
-        email: {
+        adress: {
             type: String,
-            required: true,
+            required: false,
         },
     },
     {
@@ -37,5 +37,5 @@ const StorechainSchema = mongoose.Schema(
     }
 );
 
-const Storechain = mongoose.model("Storechain", StorechainSchema);
-module.exports = Storechain;
+const Staff = mongoose.model("Staff", StaffSchema);
+module.exports = Staff;

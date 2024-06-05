@@ -4,6 +4,11 @@ const Product = require('./models/products.model');
 const productsRoute = require('./routes/products.route');
 const usersRoute = require('./routes/users.route');
 const categoriesRoute = require('./routes/categories.route');
+const storechainsRoute = require('./routes/storechain.route');
+const staffsRoute = require('./routes/staffs.route');
+const ordersRoute = require('./routes/orders.route');
+const orderdetailsRoute = require('./routes/orderdetails.route');
+const cartRoute = require('./routes/cart.route');
 const path = require('path');
 const app = express()
 
@@ -29,6 +34,11 @@ app.listen(8000, () =>{
 app.use('/api/products', productsRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/categories', categoriesRoute);
+app.use('/api/storechain', storechainsRoute);
+app.use('/api/staffs', staffsRoute);
+app.use('/api/orders', ordersRoute);
+app.use('/api/orderdetails', orderdetailsRoute);
+app.use('/api/shopping', cartRoute);
 
 
 app.get('/', (req, res) =>{
@@ -36,70 +46,6 @@ app.get('/', (req, res) =>{
 });
 
 
-
-// Hiển thị
-// app.get('/api/products', async (req, res) =>{
-//     try {
-//        const products = await Product.find({});
-//        res.status(200).json(products);
-//     } catch (error) {
-//         res.status(500).json({message: error.message});
-//     }
-// });
-
-// Tim theo id
-// app.get('/api/products/:productid', async (req, res) => {
-//     try {
-//         const { productid } = req.params;
-//         const product = await Product.findOne({productid: productid});
-//         if (!product) {
-//             return res.status(404).json({ message: 'Product not found' });
-//         }
-//         res.status(200).json(product);
-//     } catch (error) {
-//     res.status(500).json({message: error.message});
-//     }
-// });
-
-// Thêm
-// app.post('/api/products', async (req, res) =>{
-//     try{
-//         const product = await Product.create(req.body);
-//         res.status(200).json(product);
-//     } catch (error){
-//         res.status(500).json({message: error.message});
-//     }
-// });
-
-// Sua
-// app.put('/api/products/:productid', async (req, res) => {
-//     try {
-//         const { productid } = req.params;
-//         const product = await Product.findOneAndUpdate({ productid: productid }, req.body, { new: true });
-
-//         if(!product){
-//             return res.status(404).json({ message: 'Product not found' });
-//         }
-//         const updateProduct = await Product.findOne({productid: productid});
-//         res.status(200).json(updateProduct);
-//     } catch (error) {
-//         res.status(500).json({message: error.message});
-//     }
-// });
-
-// Xoa
-// app.delete('/api/products/:productid', async (req, res) =>{
-//     try{
-//         const { productid } = req.params;
-//         const product = await Product.findOneAndDelete({ productid: productid }, req.body, { new: true });
-//         if(!product){
-//             return res.status(404).json({ message: 'Product not found' });
-//         }
-//         res.status(200).json({ message: 'Product deleted successfully' })
-//     } catch(error) {
-//         res.status(500).json({message: error.message});
-//     }
-// });
 
 
 mongoose.connect("mongodb+srv://phamcongtrung208:0977184457Tp@rollingbase.0gbpvov.mongodb.net/rollingbaseshop?retryWrites=true&w=majority&appName=RollingBase")

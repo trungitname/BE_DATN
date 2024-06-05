@@ -35,10 +35,36 @@ const userSchema = mongoose.Schema(
             type: String,
             required: false,
         },
-        cartitems: {
-            type: Array,
-            required: false,
-        },
+        cartitems: [
+            {
+                productid: {
+                    type: String,
+                    required: false
+                },
+                quantity: {
+                    type: Number,
+                    required: false,
+                    default: 1
+                },
+                price: {
+                    type: Number,
+                    required: true,
+                    default: 0
+                },
+                size: {
+                    type: String,
+                    required: false
+                },
+                color: {
+                    type: String,
+                    required: false
+                },
+                imageurl: {
+                    type: String,
+                    required: false,
+                },
+            }
+        ]
     },
     {
         Timestamp: true
